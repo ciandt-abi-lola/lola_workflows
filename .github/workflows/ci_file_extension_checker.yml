@@ -7,7 +7,7 @@ on:
   workflow_call:
     secrets:
       GIT_CIT_LOLA_TOKEN:
-      required: true
+        required: true
 
 jobs:
   extension_check:
