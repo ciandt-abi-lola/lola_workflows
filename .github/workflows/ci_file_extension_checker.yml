@@ -5,6 +5,9 @@ name: 'File extension check'
 
 on:
   workflow_call:
+    secrets:
+      GIT_CIT_LOLA_TOKEN:
+        required: true
 
 jobs:
   extension_check:
