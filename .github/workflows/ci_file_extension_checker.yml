@@ -1,0 +1,21 @@
+# Reusable file extension check pipeline called by CI pipeline from other repos.
+# This YAML will run the file extension check validator on the Pull request.
+
+name: 'File extension check'
+
+on:
+  workflow_call:
+
+jobs:
+  extension_check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout current repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Running the file extension check
+      run: |
+        sh ${GITHUB_WORKSPACE}/lola_tools/scripts/ci/extension_check.sh
