@@ -5,17 +5,22 @@ name: 'File extension check'
 
 on:
   workflow_call:
+    inputs:
+      GIT_CIT_LOLA_TOKEN:
+        required: true
 
 jobs:
   extension_check:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout current repository
+    - name: Checkout utility_scripts repository
       uses: actions/checkout@v2
       with:
-        fetch-depth: 0
+        repository: ciandt-abi-lola/lola_workflows
+        path: lola_workflows
+        token: ${{ secrets.GIT_CIT_LOLA_TOKEN }}
 
     - name: Running the file extension check
       run: |
-        sh ${GITHUB_WORKSPACE}/lola_tools/scripts/ci/extension_check.sh
+        sh ${GITHUB_WORKSPACE}/lola_workflows/scripts/extension_check.sh
