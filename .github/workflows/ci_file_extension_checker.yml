@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout utility_scripts repository
+    - name: Checkout worflows repository
       uses: actions/checkout@v2
       with:
         repository: ciandt-abi-lola/lola_workflows
@@ -23,4 +23,4 @@ jobs:
 
     - name: Running the file extension check
       run: |
-        sh ${GITHUB_WORKSPACE}/lola_workflows/scripts/extension_check.sh ${{ github.base_ref }}
+         echo '${{ toJSON(github) }}' && sh ${GITHUB_WORKSPACE}/lola_workflows/scripts/extension_check.sh ${{ github.base_ref }}
