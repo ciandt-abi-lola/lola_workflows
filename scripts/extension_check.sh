@@ -16,23 +16,23 @@ while IFS= read -r line;
   do
     if [ -z "$extensioncheck" ]
       then
-      echo -e "\e[1;32m File: '$line' could be commited. \e[0m"
+      echo "\e[1;32m File: '$line' could be commited. \e[0m"
       flag=true
     else
-      echo -e "\e[1;31m ###################################################################### \e[0m"
-      echo -e "\e[1;31m File :'$line' is Jupyter notebook. Notebooks are prevented from being committed by the branch policies. Please remove the file. \e[0m"
-      echo -e "\e[1;31m ###################################################################### \e[0m"
+      echo "\e[1;31m ###################################################################### \e[0m"
+      echo "\e[1;31m File :'$line' is Jupyter notebook. Notebooks are prevented from being committed by the branch policies. Please remove the file. \e[0m"
+      echo "\e[1;31m ###################################################################### \e[0m"
       flag=false
     fi
   done < ./shafile.txt
 
 if [ "$flag" = true ]
   then
-    echo -e "\e[1;32m Commit has passed file extension validation. \e[0m"
+    echo "\e[1;32m Commit has passed file extension validation. \e[0m"
 elif [ ! -s shafile.txt ] && [ "$flag" = false ]
   then
-    echo -e "\e[1;32m No output from git command, Passing the test .\e[0m"
+    echo "\e[1;32m No output from git command, Passing the test .\e[0m"
 else
-    echo -e "\e[1;31m Commit has failed file extension validation.\e[0m"
+    echo "\e[1;31m Commit has failed file extension validation.\e[0m"
     exit 1
 fi
