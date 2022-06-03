@@ -23,4 +23,4 @@ jobs:
 
     - name: Running the file extension check
       run: |
-         echo '${{ toJSON(github) }}' && sh ${GITHUB_WORKSPACE}/lola_workflows/scripts/extension_check.sh ${{ github.base_ref }}
+         sh ${GITHUB_WORKSPACE}/lola_workflows/scripts/extension_check.sh ${{ github.base_ref }}
