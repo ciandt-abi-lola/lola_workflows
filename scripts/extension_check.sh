@@ -4,6 +4,7 @@
 #!/bin/bash
 
 currentbranch="$1"
+echo "current branch is "$currentbranch
 flag=false
 
 # Gets the list of file difference for the current branch and outputs to file.
@@ -14,15 +15,18 @@ git diff --name-only --diff-filter=AMR origin/$currentbranch..HEAD  1> shafile.t
 
 while IFS= read -r line;
   do
-    if [ -z "$extensioncheck" ]
-      then
-      echo "\e[1;32m File: '$line' could be commited. \e[0m"
-      flag=true
-    else
+
+    if [ "$line" == "*.[iI][Pp][Yy][Nn][Bb]" ];
+    then
       echo "\e[1;31m ###################################################################### \e[0m"
       echo "\e[1;31m File :'$line' is Jupyter notebook. Notebooks are prevented from being committed by the branch policies. Please remove the file. \e[0m"
       echo "\e[1;31m ###################################################################### \e[0m"
       flag=false
+
+    else
+      echo "\e[1;32m File: '$line' could be commited. \e[0m"
+      flag=true
+
     fi
   done < ./shafile.txt
 
